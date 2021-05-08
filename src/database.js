@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/comandas-db-app', {
+require('dotenv').config({path: 'variables.env'});
+
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.DB_NOTES, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,

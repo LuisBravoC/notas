@@ -8,4 +8,8 @@ router.get('/about', (req, res) =>{
     res.render('about');
 });
 
+router.get('/twitter', (req, res) =>{
+    res.render('twitter');
+});
+
 module.exports = router;
