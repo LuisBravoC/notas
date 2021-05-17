@@ -9,7 +9,7 @@ router.get('/notes/add', isAuthenticated, (req, res) => {
 
 router.post('/notes/new-notes', isAuthenticated, async (req, res) => {
     console.log(req.body);
-    const { title, description } = req.body;
+    const { title, description} = req.body;
     const errors = [];
     if (!title) {
         errors.push({ text: 'Por favor escriba un titulo' });
@@ -27,6 +27,7 @@ router.post('/notes/new-notes', isAuthenticated, async (req, res) => {
     } else {
         const newNote = new Note({ title, description });
         newNote.user = req.user.id;
+        newNote.author = req.user.name;
         await newNote.save();
         req.flash('success_msg', "Nota agregada satisfactoriamente")
         console.log(newNote);
@@ -35,6 +36,7 @@ router.post('/notes/new-notes', isAuthenticated, async (req, res) => {
 });
 
 router.get('/notes', isAuthenticated, async (req, res) => {
+    console.log("Body ", req.user);
     await Note.find({user: req.user.id}).sort({ date: 'desc' })
         .then(documentos => {
             const contexto = {

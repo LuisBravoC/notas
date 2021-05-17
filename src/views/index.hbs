@@ -1,7 +1,43 @@
-<div class="jumbotron mt-4">
-    <h1 class="display-4">Notas</h1>
-    <p class="lead"> Plataforma de notas online </p>
-    <hr class="my-4">
-    <p>Página creada para crear y compartir notas enfocadas en un área estudiantil, facilitar la comunicación entre profesores y alumnos!</p>
-    <a href="/twitter" class="btn btn-primary btn-lg">Twitter</a>
+<div class="container">
+    <div class="row">
+        <div class="container mb-3">
+            <h1 style="color:white">NOTAS PUBLICAS</h1>
+        </div>
+        {{#unless user}}
+        <div class="col">
+            <div class="jumbotron mt-4">
+                <h1 class="display-4">Notes academy</h1>
+                <p class="lead"> Plataforma de notas online </p>
+                <hr class="my-4">
+                <p>Página creada para crear y compartir notas enfocadas en un área estudiantil, facilitar la
+                    comunicación
+                    entre
+                    profesores y alumnos!</p>
+                <a href="/twitter" class="btn btn-primary btn-lg">Twitter</a>
+            </div>
+        </div>
+        <div class="col">
+            {{> signin}}
+        </div>
+        {{else}}
+        {{#each notes}}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <div class="card-header">
+
+                    {{ day }}/{{ month }}/{{ year }}
+
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-center">
+                        {{ title }}
+                    </h5>
+                    <p>Autor: {{author}}</p>
+                    <p>{{description}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{/unless}}
+    </div>
 </div>

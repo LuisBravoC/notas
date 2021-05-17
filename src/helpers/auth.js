@@ -6,6 +6,6 @@ helpers.isAuthenticated = (req, res, next) => {
     }
     req.flash('error_msg', 'No está autorizado');
     res.redirect('/users/signin');
-};
+};  
 
 module.exports = helpers;
