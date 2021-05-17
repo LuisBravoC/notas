@@ -1,7 +1,8 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/">Notas</a>
+            <img src="/img/favicon.png" class="mr-4" alt="Logo" width="50">
+            <a class="navbar-brand" href="/notes">Notas</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -18,6 +19,9 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     {{#if user}}
+                    <form action="/notes/add" class="form-inline my-2 my-lg-0 mr-4">
+                        <button class="btn btn-primary my-2 my-sm-0">Crear nueva nota</button>
+                    </form>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
