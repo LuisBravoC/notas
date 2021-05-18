@@ -21,6 +21,7 @@
             <h1 style="color:white">NOTAS PUBLICAS</h1>
         </div>
         {{#each notes}}
+        {{#if private}}
         <div class="col-md-3 mb-4">
             <div class="card">
                 <div class="card-header">
@@ -37,6 +38,7 @@
                 </div>
             </div>
         </div>
+        {{/if}}
         {{/each}}
         {{/unless}}
     </div>

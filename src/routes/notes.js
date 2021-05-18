@@ -9,7 +9,7 @@ router.get('/notes/add', isAuthenticated, (req, res) => {
 
 router.post('/notes/new-notes', isAuthenticated, async (req, res) => {
     console.log(req.body);
-    const { title, description} = req.body;
+    const { title, description, private } = req.body;
     const errors = [];
     if (!title) {
         errors.push({ text: 'Por favor escriba un titulo' });
@@ -25,7 +25,7 @@ router.post('/notes/new-notes', isAuthenticated, async (req, res) => {
             description
         });
     } else {
-        const newNote = new Note({ title, description });
+        const newNote = new Note({ title, description, private });
         newNote.user = req.user.id;
         newNote.author = req.user.name;
         await newNote.save();
@@ -66,8 +66,8 @@ router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
 });
 
 router.put('/notes/edit-note/:id', isAuthenticated, async (req, res) => {
-    const { title, description } = req.body;
-    await Note.findByIdAndUpdate(req.params.id, { title, description }).lean();
+    const { title, description, private } = req.body;
+    await Note.findByIdAndUpdate(req.params.id, { title, description, private }).lean();
     req.flash('success_msg', "Nota actualizada satisfactoriamente")
     res.redirect('/notes');
 });
