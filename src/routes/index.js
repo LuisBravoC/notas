@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
                         _id: documento._id,
                         title: documento.title,
                         description: documento.description,
+                        private: documento.private,
                         author: documento.author,
                         date: documento.date,
                         day: documento.date.getDate(),
