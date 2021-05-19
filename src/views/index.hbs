@@ -24,17 +24,25 @@
         {{#if private}}
         <div class="col-md-3 mb-4">
             <div class="card">
-                <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <div class="card-header">
 
-                    {{ day }}/{{ month }}/{{ year }}
+                            {{ day }}/{{ month }}/{{ year }}
 
+                        </div>
+                    </div>
+                    
                 </div>
+                
                 <div class="card-body">
+                    
                     <h5 class="card-title d-flex justify-content-between align-items-center">
                         {{ title }}
                     </h5>
-                    <p>Autor: {{author}}</p>
+                    
                     <p>{{description}}</p>
+                    <p>- <a href="http://localhost:3000/users/profile/{{user}}" style="color: rgb(22, 154, 158);"> {{author}}</a></p>
                 </div>
             </div>
         </div>
