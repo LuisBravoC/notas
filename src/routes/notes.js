@@ -4,11 +4,12 @@ const Note = require('../models/Notes');
 const { isAuthenticated } = require('../helpers/auth');
 
 router.get('/notes/add', isAuthenticated, (req, res) => {
-    res.render('notes/new-notes');
+    res.render('notes/new-notes', {
+        userid: req.user._id
+    });
 });
 
 router.post('/notes/new-notes', isAuthenticated, async (req, res) => {
-    console.log(req.body);
     const { title, description, private } = req.body;
     const errors = [];
     if (!title) {
@@ -47,14 +48,15 @@ router.get('/notes', isAuthenticated, async (req, res) => {
                         description: documento.description,
                         date: documento.date,
                         day: documento.date.getDate(),
-                        month: documento.date.getMonth(),
+                        month: documento.date.getMonth() + 1,
                         year: documento.date.getFullYear(),
                     }
                 })
             }
             res.render('notes/all-notes', {
                 notes: contexto.notes,
-                username: req.user.name
+                username: req.user.name,
+                userid: req.user._id
             })
         });
 });
@@ -62,7 +64,10 @@ router.get('/notes', isAuthenticated, async (req, res) => {
 router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
     const note = await Note.findById(req.params.id).lean();
     console.log(note);
-    res.render('notes/edit-note', { note });
+    res.render('notes/edit-note', { 
+        note,
+        userid: req.user._id 
+    });
 });
 
 router.put('/notes/edit-note/:id', isAuthenticated, async (req, res) => {

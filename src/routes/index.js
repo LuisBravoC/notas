@@ -13,9 +13,10 @@ router.get('/', async (req, res) => {
                         description: documento.description,
                         private: documento.private,
                         author: documento.author,
+                        user: documento.user,
                         date: documento.date,
                         day: documento.date.getDate(),
-                        month: documento.date.getMonth(),
+                        month: documento.date.getMonth() + 1,
                         year: documento.date.getFullYear(),
                     }
                 })
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
             if (req.user) {
                 res.render('index', {
                     notes: contexto.notes,
-                    name: req.user.id
+                    userid: req.user._id
                 });
             } else {
                 res.render('index', {
@@ -34,7 +35,13 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-    res.render('about');
+    if (req.user) {
+        res.render('about', {
+            userid: req.user._id
+        });
+    } else {
+        res.render('about');
+    }
 });
 
 router.get('/twitter', (req, res) => {

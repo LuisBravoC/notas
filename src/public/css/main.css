@@ -6,22 +6,101 @@ body {
 }
 
 header{
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 
 .logo {
     width: 30%;
 }
 
-ul.dropdown-menu {
-    background-color: #ffffff;
+.padding {
+    padding: 3rem !important
 }
-ul.dropdown-menu:hover {
-    background-color: #ffffff;
+
+.user-card-full {
+    overflow: hidden
 }
-.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-    background-color: #ffffff;
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+    border: none;
+    margin-bottom: 30px
 }
-.nav > li > a:focus, .nav > li > a:hover {
-    background-color: #ffffff;
+
+.m-r-0 {
+    margin-right: 0px
+}
+
+.m-l-0 {
+    margin-left: 0px
+}
+
+.user-card-full .user-profile {
+    border-radius: 5px 0 0 5px
+}
+
+.bg-c-lite-green {
+    
+    background: -webkit-linear-gradient(to right, #322e7e, #43C6AC);
+    background: linear-gradient(to right, #322e7e, #43C6AC);
+}
+
+.user-profile {
+    padding: 20px 0
+}
+
+.card-block {
+    padding: 1.25rem
+}
+
+.m-b-25 {
+    margin-bottom: 25px
+}
+
+.img-radius {
+    border-radius: 5px
+}
+
+h6 {
+    font-size: 14px
+}
+
+.card .card-block p {
+    line-height: 25px
+}
+
+@media only screen and (min-width: 1400px) {
+    p {
+        font-size: 14px
+    }
+}
+
+.m-b-10 {
+    margin-bottom: 10px
+}
+
+.text-muted {
+    color: #919aa3 !important
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0
+}
+
+.f-w-600 {
+    font-weight: 600
+}
+
+
+.user-card-full .social-link li {
+    display: inline-block
+}
+
+.user-card-full .social-link li a {
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out
 }
