@@ -13,8 +13,25 @@ header{
     width: 30%;
 }
 
-.padding {
-    padding: 3rem !important
+.btn-circle.btn-lg {
+    width: 35px;
+    height: 35px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+    align-items: center;
+    display: flex;
+  }
+
+.responsive {
+    width: 75%;
+    height: auto;
+}
+
+.btn-circle.btn-lg SPAN{
+    margin:auto;
+    text-align:center;
 }
 
 .user-card-full {

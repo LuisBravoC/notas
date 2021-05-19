@@ -129,49 +129,30 @@ router.get('/users/profile/:id', isAuthenticated, async (req, res) => {
 });
 
 router.get('/users/edit/:id', isAuthenticated, async (req, res, next) => {
-    var userinfo = "";
-    await User.find({ _id: req.params.id })
-        .then(documentos => {
-            userinfo = {
-                users: documentos.map(documento => {
-                    return {
-                        birthday: documento.birthday,
-                        description: documento.description,
-                        day: documento.birthday.getDate(),
-                        month: documento.birthday.getMonth() + 1,
-                        year: documento.birthday.getFullYear()
-                    }
-                })
-            }
-        });
 
     const user = await User.findById(req.params.id).lean();
 
     console.log("Este es el usuario ", user);
-    console.log("Este es el userinfo ", userinfo);
     res.render('users/edit-profile', {
         user,
-        users: userinfo.users,
         userid: req.user._id
     });
 });
 
 router.put('/users/edit-profile/:id', isAuthenticated, async (req, res) => {
-    const { name, birthday, description, tel, facebook, twitter, instagram } = req.body;
+    const { name, description, tel, facebook, twitter, instagram } = req.body;
     const { _id } = req.user;
-    const user = { name, birthday, description, tel, facebook, twitter, instagram };
+    const user = { name, description, tel, facebook, twitter, instagram };
     const errors = [];
     if (name.length <= 0) {
         errors.push({ text: 'Favor de ingresar un nombre' });
     }
-    if (birthday.length <= 0) {
-        errors.push({ text: 'Favor de ingresar una fecha de nacimiento' });
-    }
     if (errors.length > 0) {
-        res.render('users/edit-profile', { user });
+        req.flash('error_msg', "Favor de ingresar un nombre")
+        res.redirect('/users/edit/'+_id);
     } else {
-        await User.findByIdAndUpdate(req.params.id, { name, birthday, description, tel, facebook, twitter, instagram }).lean();
-        req.flash('success_msg', "Perfil actualizada satisfactoriamente")
+        await User.findByIdAndUpdate(req.params.id, { name, description, tel, facebook, twitter, instagram }).lean();
+        req.flash('success_msg', "Perfil actualizado satisfactoriamente")
         res.redirect('/users/profile/'+_id);
     }
 });

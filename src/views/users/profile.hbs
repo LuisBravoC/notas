@@ -11,7 +11,7 @@
                                         alt="User-Profile-Image"> </div>
                                 <h6 class="f-w-600">{{ name }}</h6>
                                 <p>{{description}}</p>
-                                
+
                                 <form action="/users/edit/{{_id}}">
                                     <button class="btn btn-light" type="submit" style="">
                                         <span style="color: rgb(51, 51, 51)">
@@ -57,21 +57,23 @@
                                         <h6 class="text-muted f-w-400"></h6>
                                     </div>
                                     {{/if}}
-                                    
+
                                 </div>
                                 <ul class="social-link list-unstyled m-t-40 m-b-10 mt-4">
                                     {{#if facebook}}
-                                    <li><a href="https://www.facebook.com/{{facebook}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title=""
+                                    <li><a href="https://www.facebook.com/{{facebook}}" target="_blank"
+                                            data-toggle="tooltip" data-placement="bottom" title=""
                                             data-original-title="facebook" data-abc="true"><i class="fab fa-facebook"
                                                 aria-hidden="true"></i></a></li>
                                     {{/if}}
                                     {{#if twitter}}
-                                    <li><a href="https://twitter.com/{{twitter}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title=""
-                                            data-original-title="twitter" data-abc="true"><i class="fab fa-twitter"
-                                                aria-hidden="true"></i></a></li>
+                                    <li><a href="https://twitter.com/{{twitter}}" target="_blank" data-toggle="tooltip"
+                                            data-placement="bottom" title="" data-original-title="twitter"
+                                            data-abc="true"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
                                     {{/if}}
                                     {{#if instagram}}
-                                    <li><a href="https://www.instagram.com/{{instagram}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title=""
+                                    <li><a href="https://www.instagram.com/{{instagram}}" target="_blank"
+                                            data-toggle="tooltip" data-placement="bottom" title=""
                                             data-original-title="instagram" data-abc="true"><i class="fab fa-instagram"
                                                 aria-hidden="true"></i></a></li>
                                     {{/if}}
@@ -94,17 +96,23 @@
     {{#if private}}
     <div class="col-md-3 mb-4">
         <div class="card">
-            <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <div class="card-header">
 
-                {{ day }}/{{ month }}/{{ year }}
+                        {{ day }}/{{ month }}/{{ year }}
 
+                    </div>
+                </div>
             </div>
             <div class="card-body">
+
                 <h5 class="card-title d-flex justify-content-between align-items-center">
                     {{ title }}
                 </h5>
-                <p>Autor: {{author}}</p>
+
                 <p>{{description}}</p>
+                <p>- {{author}}</p>
             </div>
         </div>
     </div>
