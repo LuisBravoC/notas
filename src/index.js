@@ -54,7 +54,13 @@ app.use(require('./routes/users'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res) => {
-    res.render("404");
+    if (req.user) {
+        res.render('404', {
+            userid: req.user._id
+        });
+    } else {
+        res.render('404');
+    }
 });
 
 // Server listenning

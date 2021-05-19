@@ -19,21 +19,24 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     {{#if user}}
+                    
                     <form action="/notes/add" class="form-inline my-2 my-lg-0 mr-4">
                         <button class="btn btn-primary my-2 my-sm-0">Crear nueva nota</button>
                     </form>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link btn btn-primary btn-circle btn-lg" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Notas
+                            <span style="color: whitesmoke;">
+                                <i class="dropdown-toggle"></i>
+                            </span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/users/profile/{{userid}}">Perfil</a>
+                            <a class="dropdown-item" href="/users/profile/{{userid}}"><i class="fas fa-user"></i> Perfil</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/">Ver todas</a>
-                            <a class="dropdown-item" href="/notes">Mis notas</a>
+                            <a class="dropdown-item" href="/"><i class="fas fa-globe"></i> Notas publicas</a>
+                            <a class="dropdown-item" href="/notes"><i class="fas fa-sticky-note"></i> Mis notas</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/users/logout">Cerrar sesión</a>
+                            <a class="dropdown-item" href="/users/logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
                         </div>
                     </li>
                     {{else}}
