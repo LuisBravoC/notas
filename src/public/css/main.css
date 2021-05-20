@@ -11,6 +11,18 @@ header{
 
 .logo {
     width: 30%;
+    height: 30%;
+}
+
+.child {
+    width: 100%;
+    max-width: -moz-fit-content;
+    max-width: -webkit-fit-content;
+}
+
+.vl {
+    border-left: 6px solid #43C6AC;
+    height: 400px;
 }
 
 .btn-circle.btn-lg {
