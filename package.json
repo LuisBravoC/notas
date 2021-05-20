@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/luismanuelbravocazares/comandax.git"
+    "url": "git+https://github.com/LuisBravoC/notas.git"
   },
   "keywords": [],
   "author": "Luis Manuel Bravo Cazares",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/luismanuelbravocazares/comandax/issues"
+    "url": "https://github.com/LuisBravoC/notas/issues"
   },
-  "homepage": "https://gitlab.com/luismanuelbravocazares/comandax#readme",
+  "homepage": "https://github.com/LuisBravoC/notas#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
