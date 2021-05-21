@@ -11,7 +11,8 @@
                                         alt="User-Profile-Image"> </div>
                                 <h6 class="f-w-600">{{ name }}</h6>
                                 <p>{{description}}</p>
-
+                                {{/each}}
+                                {{#each edit}}
                                 <form action="/users/edit/{{_id}}">
                                     <button class="btn btn-light" type="submit" style="">
                                         <span style="color: rgb(51, 51, 51)">
@@ -19,7 +20,8 @@
                                         </span>
                                     </button>
                                 </form>
-
+                                {{/each}}
+                                {{#each users}}
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -46,18 +48,12 @@
                                 </div>
                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
                                 <div class="row">
-                                    {{#if birthday}}
+                                    {{/each}}
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Cumpleaños</p>
-                                        <h6 class="text-muted f-w-400">{{ day }}/{{ month }}/{{ year }}</h6>
+                                        <h6 class="text-muted f-w-400">{{birthdate}}</h6>
                                     </div>
-                                    {{else}}
-                                    <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Cumpleaños</p>
-                                        <h6 class="text-muted f-w-400"></h6>
-                                    </div>
-                                    {{/if}}
-
+                                    {{#each users}}
                                 </div>
                                 <ul class="social-link list-unstyled m-t-40 m-b-10 mt-4">
                                     {{#if facebook}}
