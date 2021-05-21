@@ -8,13 +8,13 @@
                 <form action="/users/edit-profile/{{user._id}}?_method=PUT" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{user.name}}">
+                        <input type="text" class="form-control" name="name" placeholder="Nombre" 
+                        value="{{user.name}}" required>
                     </div>
-                    <!-- <div class="form-group">
-                        <input id="datepicker" class="form-control" name="birthday" placeholder="Fecha de nacimiento"
-                            value="{{ day }}/{{ month }}/{{ year }}">
+                    <div class="form-group">
+                        <input id="datepicker" class="form-control" name="birthdate" placeholder="Fecha de nacimiento"
+                            value="{{ day }}/{{ month }}/{{ year }}" required>
                     </div>
-                    -->
                     <div class="form-group">
                         <input type="description" class="form-control" name="description" placeholder="Descripción"
                             value="{{user.description}}">

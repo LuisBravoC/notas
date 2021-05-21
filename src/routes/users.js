@@ -3,6 +3,7 @@ const User = require('../models/User');
 const passport = require('passport');
 const Note = require('../models/Notes');
 const { isAuthenticated } = require('../helpers/auth');
+const moment = require('moment');
 
 router.get('/users/signin', (req, res) => {
     if (req.user) {
@@ -28,7 +29,7 @@ router.get('/users/signup', (req, res) => {
 });
 
 router.post('/users/signup', async (req, res) => {
-    const { name, email, birthday, password, confirm_password } = req.body;
+    const { name, email, birthdate, password, confirm_password } = req.body;
     const errors = [];
     if (name.length <= 0) {
         errors.push({ text: 'Favor de ingresar un nombre' });
@@ -41,7 +42,8 @@ router.post('/users/signup', async (req, res) => {
     } else if (password.length < 4) {
         errors.push({ text: 'Las contraseñas debe tener al menos 4 caracteres' });
     }
-    if (birthday.length <= 0) {
+    const birthday = moment(birthdate, 'DD.MM.YYYY').format('MM.DD.YYYY');
+    if (birthdate.length <= 0) {
         errors.push({ text: 'Favor de ingresar una fecha de nacimiento' });
     }
     if (password != confirm_password) {
@@ -52,7 +54,7 @@ router.post('/users/signup', async (req, res) => {
         errors.push({ text: 'El correo electrónico ya está en uso' });
     }
     if (errors.length > 0) {
-        res.render('users/signup', { errors, name, email, birthday, password, confirm_password });
+        res.render('users/signup', { errors, name, email, birthdate, password, confirm_password });
     } else {
         const newUser = new User({ name, email, birthday, password });
         newUser.password = await newUser.encryptPassword(password);
@@ -135,25 +137,32 @@ router.get('/users/edit/:id', isAuthenticated, async (req, res, next) => {
     console.log("Este es el usuario ", user);
     res.render('users/edit-profile', {
         user,
+        day: req.user.birthday.getDate(),
+        month: req.user.birthday.getMonth() + 1,
+        year: req.user.birthday.getFullYear(),
         userid: req.user._id
     });
 });
 
 router.put('/users/edit-profile/:id', isAuthenticated, async (req, res) => {
-    const { name, description, tel, facebook, twitter, instagram } = req.body;
+    const { name, description, birthdate, tel, facebook, twitter, instagram } = req.body;
     const { _id } = req.user;
-    const user = { name, description, tel, facebook, twitter, instagram };
+    const user = { name, description, birthdate, tel, facebook, twitter, instagram };
     const errors = [];
+    const birthday = moment(birthdate, 'DD.MM.YYYY').format('MM.DD.YYYY');
     if (name.length <= 0) {
         errors.push({ text: 'Favor de ingresar un nombre' });
     }
+    if (birthdate.length <= 0) {
+        errors.push({ text: 'Favor de ingresar una fecha de nacimiento' });
+    }
     if (errors.length > 0) {
-        req.flash('error_msg', "Favor de ingresar un nombre")
-        res.redirect('/users/edit/'+_id);
+        req.flash('error_msg', "Favor de ingresar un nombre y fecha de nacimiento")
+        res.redirect('/users/edit/' + _id);
     } else {
-        await User.findByIdAndUpdate(req.params.id, { name, description, tel, facebook, twitter, instagram }).lean();
+        await User.findByIdAndUpdate(req.params.id, { name, description, birthday, tel, facebook, twitter, instagram }).lean();
         req.flash('success_msg', "Perfil actualizado satisfactoriamente")
-        res.redirect('/users/profile/'+_id);
+        res.redirect('/users/profile/' + _id);
     }
 });
 
