@@ -98,31 +98,32 @@ router.get('/users/profile/:id', isAuthenticated, async (req, res) => {
                         _id: documento._id,
                         name: documento.name,
                         email: documento.email,
-                        birthday: documento.birthday,
                         description: documento.description,
                         tel: documento.tel,
                         facebook: documento.facebook,
                         twitter: documento.twitter,
                         instagram: documento.instagram,
-                        day: documento.birthday.getDate(),
-                        month: documento.birthday.getMonth() + 1,
-                        year: documento.birthday.getFullYear()
                     }
                 })
             }
         });
+    const user = await User.findById(req.params.id).lean();
+    const birthdate = moment(user.birthday).format('DD/MM/YYYY');
     if (req.user) {
         if (req.user._id == req.params.id) {
             console.log('Son iguales')
             res.render('users/profile', {
                 notes: contexto.notes,
                 users: userinfo.users,
+                edit: userinfo.users,
+                birthdate: birthdate,
                 userid: req.user._id,
             });
         } else {
-            res.render('users/profile-other', {
+            res.render('users/profile', {
                 notes: contexto.notes,
                 users: userinfo.users,
+                birthdate: birthdate,
                 userid: req.user._id,
             });
             console.log('No son iguales')
@@ -133,13 +134,12 @@ router.get('/users/profile/:id', isAuthenticated, async (req, res) => {
 router.get('/users/edit/:id', isAuthenticated, async (req, res, next) => {
 
     const user = await User.findById(req.params.id).lean();
+    const birthdate = moment(user.birthday).format('DD/MM/YYYY');
 
     console.log("Este es el usuario ", user);
     res.render('users/edit-profile', {
         user,
-        day: req.user.birthday.getDate(),
-        month: req.user.birthday.getMonth() + 1,
-        year: req.user.birthday.getFullYear(),
+        birthdate: birthdate,
         userid: req.user._id
     });
 });
